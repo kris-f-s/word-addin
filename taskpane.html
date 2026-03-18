@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Text Color Formatter</title>
+    
+    <!-- Logger (必须在 Office.js 之前加载，避免命名冲突) -->
+    <script type="text/javascript" src="logger.js"></script>
+    
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="taskpane.css" />
+</head>
+<body>
+    <div id="content-header">
+        <div class="ms-Grid ms-bgColor-neutralLighter ms-u-lg12">
+            <h1 class="page-title">文本颜色格式化工具</h1>
+        </div>
+    </div>
+    
+    <div id="content-main">
+        <div class="container">
+            <div id="rules-container">
+                <!-- 规则行将通过 JavaScript 动态添加 -->
+            </div>
+            
+            <div class="button-group">
+                <button id="add-rule-btn" class="ms-Button ms-Button--primary">
+                    <span class="ms-Button-label">+ 添加规则</span>
+                </button>
+            </div>
+            
+            <div class="button-group action-buttons">
+                <button id="confirm-btn" class="ms-Button ms-Button--primary">
+                    <span class="ms-Button-label">确认</span>
+                </button>
+                <button id="reset-btn" class="ms-Button">
+                    <span class="ms-Button-label">重置</span>
+                </button>
+                <button id="download-log-btn" class="ms-Button" style="background: #6c757d; border-color: #6c757d; color: white;">
+                    <span class="ms-Button-label">下载日志</span>
+                </button>
+            </div>
+            
+            <!-- 消息提示区域 -->
+            <div id="message-area" style="display: none; margin-top: 20px; padding: 12px; border-radius: 4px; font-size: 14px;"></div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="taskpane.js"></script>
+</body>
+</html>
+

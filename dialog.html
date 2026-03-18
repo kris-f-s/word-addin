@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Message</title>
+    <style>
+        body {
+            font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
+            padding: 20px;
+            margin: 0;
+        }
+        .message {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+</head>
+<body>
+    <div class="message" id="message"></div>
+    <script type="text/javascript">
+        Office.onReady(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message') || '操作完成';
+            document.getElementById('message').textContent = decodeURIComponent(message);
+            
+            // 3秒后自动关闭
+            setTimeout(() => {
+                Office.context.ui.messageParent(JSON.stringify({ status: 'success' }));
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
+

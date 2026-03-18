@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>服务器测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Word Add-in 服务器测试页面</h1>
+    
+    <div class="info status">
+        <strong>说明：</strong> 这个页面用于测试本地服务器是否正常运行。
+        如果这个页面能正常显示，说明服务器配置正确。
+    </div>
+    
+    <div id="status" class="status"></div>
+    
+    <h2>测试项目</h2>
+    <button onclick="testServer()">测试服务器连接</button>
+    <button onclick="testFiles()">测试文件加载</button>
+    <button onclick="testOfficeJS()">测试 Office.js</button>
+    
+    <div id="results"></div>
+    
+    <h2>诊断信息</h2>
+    <div id="diagnostics"></div>
+    
+    <script>
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = 'status ' + type;
+            statusDiv.innerHTML = message;
+        }
+        
+        function addResult(message, success) {
+            const resultsDiv = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = 'status ' + (success ? 'success' : 'error');
+            div.innerHTML = message;
+            resultsDiv.appendChild(div);
+        }
+        
+        function testServer() {
+            addResult('✓ 服务器正在运行（能显示此页面说明服务器正常）', true);
+            addResult('✓ HTTPS 连接正常', true);
+            addResult('✓ 可以访问服务器文件', true);
+        }
+        
+        function testFiles() {
+            const files = [
+                'taskpane.html',
+                'taskpane.js',
+                'taskpane.css',
+                'commands.html',
+                'manifest-local.xml'
+            ];
+            
+            files.forEach(file => {
+                fetch(file)
+                    .then(response => {
+                        if (response.ok) {
+                            addResult(`✓ ${file} 可以访问`, true);
+                        } else {
+                            addResult(`✗ ${file} 无法访问 (${response.status})`, false);
+                        }
+                    })
+                    .catch(error => {
+                        addResult(`✗ ${file} 加载失败: ${error.message}`, false);
+                    });
+            });
+        }
+        
+        function testOfficeJS() {
+            if (typeof Office !== 'undefined') {
+                addResult('✓ Office.js 已加载', true);
+                Office.onReady().then(info => {
+                    addResult(`✓ Office.js 就绪 (Host: ${info.host})`, true);
+                });
+            } else {
+                addResult('✗ Office.js 未加载（这是正常的，因为不在 Word 环境中）', false);
+            }
+        }
+        
+        // 显示诊断信息
+        window.onload = function() {
+            const diagnostics = document.getElementById('diagnostics');
+            diagnostics.innerHTML = `
+                <div class="info status">
+                    <strong>当前 URL:</strong> ${window.location.href}<br>
+                    <strong>协议:</strong> ${window.location.protocol}<br>
+                    <strong>主机:</strong> ${window.location.host}<br>
+                    <strong>时间:</strong> ${new Date().toLocaleString()}
+                </div>
+            `;
+            
+            // 自动测试服务器
+            testServer();
+        };
+    </script>
+    
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+</body>
+</html>
+

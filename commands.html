@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Commands</title>
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        Office.onReady(() => {
+            // 处理命令
+            Office.actions.associate("action", function () {
+                // 显示任务窗格
+                Office.addin.showAsTaskpane();
+            });
+        });
+    </script>
+</body>
+</html>
+

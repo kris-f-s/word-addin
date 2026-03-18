@@ -1,0 +1,25 @@
+{
+  "name": "word-text-color-formatter",
+  "version": "1.0.0",
+  "description": "Word Add-in for formatting text colors based on search patterns",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "office-addin",
+    "word",
+    "text-formatter"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "https": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
+
