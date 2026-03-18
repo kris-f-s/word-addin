@@ -21,7 +21,7 @@ if (!newUrl) {
 // 确保 URL 不以斜杠结尾
 const baseUrl = newUrl.replace(/\/$/, '');
 
-const manifestPath = path.join(__dirname, 'manifest.xml');
+const manifestPath = path.join(__dirname, '..', 'manifest.xml');
 
 try {
     let content = fs.readFileSync(manifestPath, 'utf8');

@@ -40,22 +40,10 @@ npm install express
 
 #### 选项 A: 使用提供的 server.js（开发/测试）
 
-1. 确保 `server.js` 文件在插件目录中
-2. 生成 SSL 证书（仅测试环境）：
-   ```bash
-   # macOS/Linux
-   chmod +x generate-cert.sh
-   ./generate-cert.sh
-   
-   # 或在 macOS Keychain Access 中信任证书
-   ```
+- **部署包 zip（扁平目录）**：`server.js` 与 `taskpane.html` 同级；在该目录用 `openssl` 生成 `localhost.pem` / `localhost-key.pem`，或从其他环境复制证书到同级目录。
+- **完整开发仓库**：在项目根目录执行 `bash scripts/generate-cert.sh`（证书写入 `certs/`），再 `npm start`；静态文件由 `public/` 提供。
 
-2. 修改 `server.js` 中的端口号（如果需要）：
-   ```javascript
-   const PORT = 3000; // 改为你想要的端口
-   ```
-
-3. 更新 `manifest.xml` 中的 URL，将 `localhost:3000` 改为你的服务器地址
+然后按需修改 `server.js` 中的 `PORT`，并更新 `manifest.xml` 中的 URL。
 
 #### 选项 B: 使用其他 Web 服务器
 

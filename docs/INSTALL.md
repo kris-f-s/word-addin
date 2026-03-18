@@ -12,8 +12,7 @@ npm install
 ### 2. 生成 SSL 证书
 
 ```bash
-chmod +x generate-cert.sh
-./generate-cert.sh
+bash scripts/generate-cert.sh
 ```
 
 或者手动生成：
@@ -109,7 +108,7 @@ Office Add-in 的快捷键功能有限。建议：
 
 ### 端口被占用
 
-如果 3000 端口被占用，可以修改 `server.js` 中的 `PORT` 变量，并相应更新 `manifest.xml` 中的 URL。
+如果 3000 端口被占用，可修改根目录 `server.js` 或 `scripts/start-server.py` 中的 `PORT`，并同步更新 `manifest.xml` / `manifest-local.xml` 中的 URL。
 
 ## 下一步
 

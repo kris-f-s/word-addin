@@ -5,4 +5,9 @@ node_modules/
 .DS_Store
 *.log
 npm-debug.log*
+word-addin-temp/
+word-addin-offline-temp/
+word-addin-install.zip
+word-addin-package.zip
+word-addin-offline.zip
 

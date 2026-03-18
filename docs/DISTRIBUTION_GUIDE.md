@@ -31,7 +31,7 @@
 使用提供的脚本更新 URL：
 
 ```bash
-node update-manifest.js https://yourcompany.com/word-addin
+node scripts/update-manifest.js https://yourcompany.com/word-addin
 ```
 
 或手动编辑 `manifest.xml`，将所有 `https://localhost:3000` 替换为你的服务器地址。
@@ -69,7 +69,7 @@ word-addin/
 #### 6. 创建用户安装包
 
 ```bash
-./create-package.sh
+bash scripts/create-package.sh
 ```
 
 这会创建 `word-addin-install.zip`，只包含 `manifest.xml`。
@@ -104,7 +104,7 @@ word-addin/
 #### 1. 创建部署包
 
 ```bash
-./create-deployment-package.sh
+bash scripts/create-deployment-package.sh
 ```
 
 这会创建 `word-addin-package.zip`，包含所有必要文件。
@@ -220,7 +220,7 @@ word-addin/
 
 **最简单的方式（推荐）：**
 1. 部署到 Web 服务器
-2. 使用 `create-package.sh` 创建安装包
+2. 使用 `bash scripts/create-package.sh` 创建安装包
 3. 分发 `word-addin-install.zip` 和 `USER_INSTALL.md`
 4. 用户只需加载 manifest.xml，完成！
 

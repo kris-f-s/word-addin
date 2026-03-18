@@ -41,24 +41,20 @@
 
 ### 步骤 2: 上传文件
 
-将以下文件上传到服务器：
+将 **`public/` 目录下的全部内容**（或与 `bash scripts/create-deployment-package.sh` 生成 zip 解压后相同的扁平静态文件）上传到服务器 Web 根目录，使 `taskpane.html` 的 URL 与 manifest 一致：
 
 ```
-word-addin/
-├── manifest.xml          # 需要更新 URL
+（Web 根目录）
 ├── taskpane.html
 ├── taskpane.css
 ├── taskpane.js
 ├── commands.html
 ├── dialog.html
-└── assets/               # 图标文件（如果有）
-    ├── icon-16.png
-    ├── icon-32.png
-    ├── icon-64.png
-    └── icon-80.png
+├── logger.js
+└── assets/
 ```
 
-**注意：** 不需要上传 `server.js`、`package.json` 等开发文件。
+**注意：** 开发仓库里这些文件在 `public/` 下；不需要上传根目录的 `server.js`（除非自用 Node 托管）。
 
 ### 步骤 3: 更新 manifest.xml
 
@@ -77,7 +73,8 @@ word-addin/
 
 ```bash
 cd word-addin
-zip word-addin-install.zip manifest.xml
+bash scripts/create-package.sh
+# 或: zip word-addin-install.zip manifest.xml
 ```
 
 ### 步骤 5: 提供安装说明
@@ -92,15 +89,7 @@ zip word-addin-install.zip manifest.xml
 
 ```bash
 cd word-addin
-zip -r word-addin-package.zip \
-    manifest.xml \
-    taskpane.html \
-    taskpane.css \
-    taskpane.js \
-    commands.html \
-    dialog.html \
-    assets/ \
-    -x "*.md" "*.sh" "server.js" "package.json" "node_modules/*" "*.pem" ".gitignore"
+bash scripts/create-deployment-package.sh
 ```
 
 ### 步骤 2: 提供部署说明

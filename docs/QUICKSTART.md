@@ -12,7 +12,7 @@ npm install
 ### 步骤 2: 生成 SSL 证书（1 分钟）
 
 ```bash
-./generate-cert.sh
+bash scripts/generate-cert.sh
 ```
 
 然后在 macOS 的 Keychain Access 中信任证书（见 INSTALL.md）
